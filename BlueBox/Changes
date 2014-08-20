@@ -1,0 +1,6 @@
+Revision history for Perl extension BlueBox.
+
+0.01  Wed Aug 20 16:59:30 2014
+	- original version; created by h2xs 1.23 with options
+		-AX -n BlueBox
+

@@ -1,0 +1,5 @@
+demo:
+  localhost:
+    host: localhost;mysql_enable_utf8=1;mysql_read_default_file=/etc/my.cnf
+    password: ~
+    username: root

@@ -1,0 +1,6 @@
+Revision history for Perl extension Demo::DB.
+
+0.01  Wed Aug 20 16:26:56 2014
+	- original version; created by h2xs 1.23 with options
+		-AX -n Demo::DB
+

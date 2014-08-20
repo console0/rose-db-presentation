@@ -1,0 +1,7 @@
+Changes
+lib/Demo/DB.pm
+lib/Demo/DB/Object.pm
+Makefile.PL
+MANIFEST
+README
+t/Demo-DB.t

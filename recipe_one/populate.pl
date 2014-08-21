@@ -12,7 +12,7 @@ my $warehouse = BlueBox::Data::Warehouse->new( id => 1 )->load;
 foreach my $username (@users)
 {
     print "Creating user: $username...";
-    my $user = BlueBox::Data::Account->new( username => $username );
+    my $user = BlueBox::Data::Account->new( username => $username, email => $username . '@wheemail.com' );
     $user->save;
     
     my $location = BlueBox::Data::Location->new( 

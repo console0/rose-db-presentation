@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 5.6.12, for osx10.7 (x86_64)
+-- MySQL dump 10.13  Distrib 5.6.14, for osx10.6 (x86_64)
 --
 -- Host: localhost    Database: bluebox
 -- ------------------------------------------------------
--- Server version	5.6.12
+-- Server version	5.6.14
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -19,7 +19,7 @@
 -- Current Database: `bluebox`
 --
 
-CREATE DATABASE /*!32312 IF NOT EXISTS*/ `bluebox` /*!40100 DEFAULT CHARACTER SET utf8 */;
+CREATE DATABASE /*!32312 IF NOT EXISTS*/ `bluebox` /*!40100 DEFAULT CHARACTER SET latin1 */;
 
 USE `bluebox`;
 
@@ -34,7 +34,7 @@ CREATE TABLE `account` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(64) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -43,6 +43,7 @@ CREATE TABLE `account` (
 
 LOCK TABLES `account` WRITE;
 /*!40000 ALTER TABLE `account` DISABLE KEYS */;
+INSERT INTO `account` VALUES (1,'userone'),(2,'usertwo'),(3,'userthree'),(4,'userfour'),(5,'console0'),(6,'userone'),(7,'usertwo'),(8,'userthree'),(9,'userfour'),(10,'console0');
 /*!40000 ALTER TABLE `account` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -69,7 +70,7 @@ CREATE TABLE `box` (
   CONSTRAINT `box_ibfk_2` FOREIGN KEY (`box_type_id`) REFERENCES `box_type` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `box_ibfk_3` FOREIGN KEY (`box_status_id`) REFERENCES `box_status` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `box_ibfk_4` FOREIGN KEY (`warehouse_id`) REFERENCES `warehouse` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=50 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -78,6 +79,7 @@ CREATE TABLE `box` (
 
 LOCK TABLES `box` WRITE;
 /*!40000 ALTER TABLE `box` DISABLE KEYS */;
+INSERT INTO `box` VALUES (1,1,3,1,1,'1-0-userone-large-0793'),(2,1,3,1,1,'1-1-userone-large-5970'),(3,1,3,1,1,'1-2-userone-large-5666'),(4,1,3,1,2,'1-3-userone-large-8353'),(5,1,3,1,1,'1-4-userone-large-7443'),(6,2,3,1,1,'2-0-usertwo-large-4518'),(7,2,3,1,1,'2-1-usertwo-large-1856'),(8,2,3,1,1,'2-2-usertwo-large-5446'),(9,2,3,1,1,'2-3-usertwo-large-1480'),(10,2,3,1,1,'2-4-usertwo-large-5952'),(11,2,3,1,1,'2-5-usertwo-large-5139'),(12,3,3,1,1,'3-0-userthree-large-0199'),(13,3,3,1,1,'3-1-userthree-large-4355'),(14,3,3,1,1,'3-2-userthree-large-6103'),(15,3,3,1,1,'3-3-userthree-large-1681'),(16,4,3,1,1,'4-0-userfour-large-7468'),(17,4,3,1,2,'4-1-userfour-large-0457'),(18,4,3,1,1,'4-2-userfour-large-6212'),(19,4,3,1,1,'4-3-userfour-large-1156'),(20,4,3,1,1,'4-4-userfour-large-7412'),(21,4,3,1,1,'4-5-userfour-large-9373'),(22,4,3,1,1,'4-6-userfour-large-2371'),(23,4,3,1,2,'4-7-userfour-large-8622'),(24,4,3,1,1,'4-8-userfour-large-6054'),(25,5,3,1,1,'5-0-console0-large-3644'),(26,5,3,1,1,'5-1-console0-large-5460'),(27,6,3,1,1,'6-0-userone-large-0541'),(28,6,3,1,1,'6-1-userone-large-3098'),(29,6,3,1,1,'6-2-userone-large-5523'),(30,6,3,1,1,'6-3-userone-large-0821'),(31,6,3,1,1,'6-4-userone-large-0607'),(32,6,3,1,1,'6-5-userone-large-0421'),(33,6,3,1,1,'6-6-userone-large-5238'),(34,6,3,1,1,'6-7-userone-large-5776'),(35,7,3,1,1,'7-0-usertwo-large-2214'),(36,7,3,1,1,'7-1-usertwo-large-2634'),(37,7,3,1,1,'7-2-usertwo-large-8979'),(38,8,3,1,1,'8-0-userthree-large-5789'),(39,8,3,1,1,'8-1-userthree-large-3867'),(40,9,3,1,1,'9-0-userfour-large-3313'),(41,9,3,1,1,'9-1-userfour-large-9824'),(42,9,3,1,1,'9-2-userfour-large-6787'),(43,9,3,1,1,'9-3-userfour-large-6607'),(44,9,3,1,1,'9-4-userfour-large-1442'),(45,9,3,1,1,'9-5-userfour-large-7493'),(46,9,3,1,1,'9-6-userfour-large-5258'),(47,9,3,1,1,'9-7-userfour-large-5638'),(48,10,3,1,1,'10-0-console0-large-4062'),(49,10,3,1,1,'10-1-console0-large-0256');
 /*!40000 ALTER TABLE `box` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -138,13 +140,10 @@ DROP TABLE IF EXISTS `item`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `item` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `box_id` int(11) NOT NULL,
   `name` varchar(32) NOT NULL,
   `description` text,
   `value` decimal(8,2) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `box_id` (`box_id`),
-  CONSTRAINT `item_ibfk_1` FOREIGN KEY (`box_id`) REFERENCES `box` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -155,6 +154,32 @@ CREATE TABLE `item` (
 LOCK TABLES `item` WRITE;
 /*!40000 ALTER TABLE `item` DISABLE KEYS */;
 /*!40000 ALTER TABLE `item` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `item_box_map`
+--
+
+DROP TABLE IF EXISTS `item_box_map`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `item_box_map` (
+  `item_id` int(11) NOT NULL DEFAULT '0',
+  `box_id` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`item_id`,`box_id`),
+  KEY `box_id` (`box_id`),
+  CONSTRAINT `item_box_map_ibfk_2` FOREIGN KEY (`box_id`) REFERENCES `box` (`id`),
+  CONSTRAINT `item_box_map_ibfk_1` FOREIGN KEY (`item_id`) REFERENCES `item` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `item_box_map`
+--
+
+LOCK TABLES `item_box_map` WRITE;
+/*!40000 ALTER TABLE `item_box_map` DISABLE KEYS */;
+/*!40000 ALTER TABLE `item_box_map` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -172,7 +197,7 @@ CREATE TABLE `location` (
   PRIMARY KEY (`id`),
   KEY `account_id` (`account_id`),
   CONSTRAINT `location_ibfk_1` FOREIGN KEY (`account_id`) REFERENCES `account` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -181,6 +206,7 @@ CREATE TABLE `location` (
 
 LOCK TABLES `location` WRITE;
 /*!40000 ALTER TABLE `location` DISABLE KEYS */;
+INSERT INTO `location` VALUES (1,1,'Delivery address for userone','8723 Test Rd, Cincinnati, OH 45826'),(2,2,'Delivery address for usertwo','8540 Test Rd, Cincinnati, OH 45858'),(3,3,'Delivery address for userthree','0494 Test Rd, Cincinnati, OH 45487'),(4,4,'Delivery address for userfour','6101 Test Rd, Cincinnati, OH 45021'),(5,5,'Delivery address for console0','0798 Test Rd, Cincinnati, OH 45329'),(6,6,'Delivery address for userone','5964 Test Rd, Cincinnati, OH 45014'),(7,7,'Delivery address for usertwo','9059 Test Rd, Cincinnati, OH 45548'),(8,8,'Delivery address for userthree','4976 Test Rd, Cincinnati, OH 45235'),(9,9,'Delivery address for userfour','8149 Test Rd, Cincinnati, OH 45872'),(10,10,'Delivery address for console0','6900 Test Rd, Cincinnati, OH 45151');
 /*!40000 ALTER TABLE `location` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -257,7 +283,7 @@ CREATE TABLE `warehouse` (
   `name` varchar(32) NOT NULL,
   `address` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -266,7 +292,7 @@ CREATE TABLE `warehouse` (
 
 LOCK TABLES `warehouse` WRITE;
 /*!40000 ALTER TABLE `warehouse` DISABLE KEYS */;
-INSERT INTO `warehouse` VALUES (1,'Cincinnati','123 Main St., Cincinnati, OH 45202');
+INSERT INTO `warehouse` VALUES (1,'Cincinnati','123 Main St., Cincinnati, OH 45202'),(2,'Cincinnati West','345 Elsewhere St, 45247');
 /*!40000 ALTER TABLE `warehouse` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -287,4 +313,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-08-20 20:40:45
+-- Dump completed on 2014-08-21 15:13:59

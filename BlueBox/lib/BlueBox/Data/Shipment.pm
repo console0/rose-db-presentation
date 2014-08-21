@@ -7,6 +7,8 @@ use base qw(Demo::DB::Object);
 __PACKAGE__->meta->setup(
     schema => 'bluebox',
     table  => 'shipment',
+    auto_load_related_classes => 0,
+
 
     columns => [
         id          => { type => 'serial', not_null => 1 },

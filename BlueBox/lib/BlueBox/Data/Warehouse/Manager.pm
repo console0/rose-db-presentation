@@ -8,7 +8,7 @@ use BlueBox::Data::Warehouse;
 
 sub object_class { 'BlueBox::Data::Warehouse' }
 
-__PACKAGE__->make_manager_methods('warehouse');
+__PACKAGE__->make_manager_methods('warehouses');
 
 1;
 

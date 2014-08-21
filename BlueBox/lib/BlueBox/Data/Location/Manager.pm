@@ -8,7 +8,7 @@ use BlueBox::Data::Location;
 
 sub object_class { 'BlueBox::Data::Location' }
 
-__PACKAGE__->make_manager_methods('location');
+__PACKAGE__->make_manager_methods('locations');
 
 1;
 

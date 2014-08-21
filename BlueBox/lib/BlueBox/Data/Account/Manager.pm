@@ -8,7 +8,7 @@ use BlueBox::Data::Account;
 
 sub object_class { 'BlueBox::Data::Account' }
 
-__PACKAGE__->make_manager_methods('account');
+__PACKAGE__->make_manager_methods('accounts');
 
 1;
 

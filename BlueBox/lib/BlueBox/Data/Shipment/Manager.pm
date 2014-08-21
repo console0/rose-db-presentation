@@ -8,7 +8,7 @@ use BlueBox::Data::Shipment;
 
 sub object_class { 'BlueBox::Data::Shipment' }
 
-__PACKAGE__->make_manager_methods('shipment');
+__PACKAGE__->make_manager_methods('shipments');
 
 1;
 

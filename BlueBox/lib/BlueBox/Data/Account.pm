@@ -7,6 +7,8 @@ use base qw(Demo::DB::Object);
 __PACKAGE__->meta->setup(
     schema => 'bluebox',
     table  => 'account',
+    auto_load_related_classes => 0,
+
 
     columns => [
         id       => { type => 'serial', not_null => 1 },
@@ -16,19 +18,19 @@ __PACKAGE__->meta->setup(
     primary_key_columns => [ 'id' ],
 
     relationships => [
-        box => {
+        boxes => {
             class      => 'BlueBox::Data::Box',
             column_map => { id => 'account_id' },
             type       => 'one to many',
         },
 
-        location => {
+        locations => {
             class      => 'BlueBox::Data::Location',
             column_map => { id => 'account_id' },
             type       => 'one to many',
         },
 
-        order => {
+        orders => {
             class      => 'BlueBox::Data::Order',
             column_map => { id => 'account_id' },
             type       => 'one to many',

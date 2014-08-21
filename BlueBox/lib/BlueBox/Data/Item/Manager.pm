@@ -8,7 +8,7 @@ use BlueBox::Data::Item;
 
 sub object_class { 'BlueBox::Data::Item' }
 
-__PACKAGE__->make_manager_methods('item');
+__PACKAGE__->make_manager_methods('items');
 
 1;
 

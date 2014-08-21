@@ -13,6 +13,7 @@ __PACKAGE__->meta->setup(
     columns => [
         id       => { type => 'serial', not_null => 1 },
         username => { type => 'varchar', length => 64 },
+        email    => { type => 'varchar', length => 128 },
     ],
 
     primary_key_columns => [ 'id' ],

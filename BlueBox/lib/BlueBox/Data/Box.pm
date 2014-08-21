@@ -4,6 +4,13 @@ use strict;
 
 use base qw(Demo::DB::Object);
 
+use BlueBox::Data::Account;
+use BlueBox::Data::BoxStatus;
+use BlueBox::Data::BoxType;
+use BlueBox::Data::ItemBoxMap;
+use BlueBox::Data::Shipment;
+use BlueBox::Data::Warehouse;
+
 __PACKAGE__->meta->setup(
     schema => 'bluebox',
     table  => 'box',
@@ -11,12 +18,12 @@ __PACKAGE__->meta->setup(
 
 
     columns => [
-        id            => { type => 'serial', not_null => 1 },
         account_id    => { type => 'integer', not_null => 1 },
-        box_type_id   => { type => 'integer', default => '0', not_null => 1 },
         box_status_id => { type => 'integer', default => '0', not_null => 1 },
-        warehouse_id  => { type => 'integer' },
+        box_type_id   => { type => 'integer', default => '0', not_null => 1 },
+        id            => { type => 'serial', not_null => 1 },
         name          => { type => 'varchar', length => 32, not_null => 1 },
+        warehouse_id  => { type => 'integer' },
     ],
 
     primary_key_columns => [ 'id' ],

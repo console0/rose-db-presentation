@@ -24,6 +24,12 @@ __PACKAGE__->meta->setup(
             type       => 'one to many',
         },
 
+        items => {
+            class      => 'BlueBox::Data::Item',
+            column_map => { id => 'account_id' },
+            type       => 'one to many',
+        },
+
         locations => {
             class      => 'BlueBox::Data::Location',
             column_map => { id => 'account_id' },

@@ -4,6 +4,10 @@ use strict;
 
 use base qw(Demo::DB::Object);
 
+use BlueBox::Data::Account;
+use BlueBox::Data::Order;
+use BlueBox::Data::Shipment;
+
 __PACKAGE__->meta->setup(
     schema => 'bluebox',
     table  => 'location',
@@ -11,10 +15,10 @@ __PACKAGE__->meta->setup(
 
 
     columns => [
-        id         => { type => 'serial', not_null => 1 },
         account_id => { type => 'integer', not_null => 1 },
-        name       => { type => 'varchar', length => 32, not_null => 1 },
         address    => { type => 'varchar', length => 255, not_null => 1 },
+        id         => { type => 'serial', not_null => 1 },
+        name       => { type => 'varchar', length => 32, not_null => 1 },
     ],
 
     primary_key_columns => [ 'id' ],

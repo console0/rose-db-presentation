@@ -4,6 +4,8 @@ use strict;
 
 use base qw(Demo::DB::Object);
 
+use BlueBox::Data::Box;
+
 __PACKAGE__->meta->setup(
     schema => 'bluebox',
     table  => 'box_type',

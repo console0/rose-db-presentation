@@ -68,11 +68,8 @@ system ("mkdir -p $mod_dir") if (!-f $mod_dir);
 use Lingua::EN::Inflect;
 my $convention = Rose::DB::Object::ConventionManager->new;
 $convention->tables_are_singular(1);
-
-$convention->plural_to_singular_function( sub { my $val = shift;  warn "p-s $val"; return $val; } );
+$convention->plural_to_singular_function( sub { my $val = shift; return $val; } );
 $convention->singular_to_plural_function(\&Lingua::EN::Inflect::PL);
-warn Dumper($convention);
-use Data::Dumper;
 
 #$convention->
 
@@ -137,18 +134,6 @@ sub usage
         --verbose
 USAGE
     exit 1;
-}
-
-sub Rose::DB::Object::ConventionManager::table_to_classz
-{
-    my($self, $table, $prefix, $plural) = @_;
-
-    $table =~ s/_(.)/\U$1/g;
-    $table =~ s/[^\w:]/_/g;
-    $table = ($prefix || '') . ucfirst $table; 
-    $table =~ s/Api/API/g;
-    $table =~ s/Statu$/Status/g;
-    return $table;
 }
 
 # Overriding this method to force schema into our DOs

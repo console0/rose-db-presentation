@@ -12,6 +12,8 @@ lib/BlueBox/Data/BoxType/Manager.pm
 lib/BlueBox/Data/DB/AutoBase1.pm
 lib/BlueBox/Data/Item.pm
 lib/BlueBox/Data/Item/Manager.pm
+lib/BlueBox/Data/ItemBoxMap.pm
+lib/BlueBox/Data/ItemBoxMap/Manager.pm
 lib/BlueBox/Data/Location.pm
 lib/BlueBox/Data/Location/Manager.pm
 lib/BlueBox/Data/Order.pm

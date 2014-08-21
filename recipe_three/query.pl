@@ -6,7 +6,7 @@ use BlueBox::Data;
 
 # All users who have a box a the secondary warehouse
 my $users = BlueBox::Data::Account::Manager->get_objects(
-                    require_objects => [ 'box' ],
+                    require_objects => [ 'boxes' ],
                     query => [ 'box.warehouse_id' => 2 ],
                     debug => 1,
             );

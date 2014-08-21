@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 5.6.16, for osx10.7 (x86_64)
+-- MySQL dump 10.13  Distrib 5.6.12, for osx10.7 (x86_64)
 --
 -- Host: localhost    Database: bluebox
 -- ------------------------------------------------------
--- Server version	5.6.16
+-- Server version	5.6.12
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -19,7 +19,7 @@
 -- Current Database: `bluebox`
 --
 
-CREATE DATABASE /*!32312 IF NOT EXISTS*/ `bluebox` /*!40100 DEFAULT CHARACTER SET latin1 */;
+CREATE DATABASE /*!32312 IF NOT EXISTS*/ `bluebox` /*!40100 DEFAULT CHARACTER SET utf8 */;
 
 USE `bluebox`;
 
@@ -34,7 +34,7 @@ CREATE TABLE `account` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(64) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -56,20 +56,20 @@ DROP TABLE IF EXISTS `box`;
 CREATE TABLE `box` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `account_id` int(11) NOT NULL,
-  `type_id` int(11) NOT NULL,
-  `status_id` int(11) NOT NULL,
+  `box_type_id` int(11) NOT NULL DEFAULT '0',
+  `box_status_id` int(11) NOT NULL DEFAULT '0',
   `warehouse_id` int(11) DEFAULT NULL,
   `name` varchar(32) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `account_id` (`account_id`),
-  KEY `type_id` (`type_id`),
-  KEY `status_id` (`status_id`),
+  KEY `type_id` (`box_type_id`),
+  KEY `status_id` (`box_status_id`),
   KEY `warehouse_id` (`warehouse_id`),
   CONSTRAINT `box_ibfk_1` FOREIGN KEY (`account_id`) REFERENCES `account` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `box_ibfk_2` FOREIGN KEY (`type_id`) REFERENCES `box_type` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `box_ibfk_3` FOREIGN KEY (`status_id`) REFERENCES `box_status` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `box_ibfk_2` FOREIGN KEY (`box_type_id`) REFERENCES `box_type` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `box_ibfk_3` FOREIGN KEY (`box_status_id`) REFERENCES `box_status` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `box_ibfk_4` FOREIGN KEY (`warehouse_id`) REFERENCES `warehouse` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -92,7 +92,7 @@ CREATE TABLE `box_status` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(32) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -116,7 +116,7 @@ CREATE TABLE `box_type` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(32) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -145,7 +145,7 @@ CREATE TABLE `item` (
   PRIMARY KEY (`id`),
   KEY `box_id` (`box_id`),
   CONSTRAINT `item_ibfk_1` FOREIGN KEY (`box_id`) REFERENCES `box` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -172,7 +172,7 @@ CREATE TABLE `location` (
   PRIMARY KEY (`id`),
   KEY `account_id` (`account_id`),
   CONSTRAINT `location_ibfk_1` FOREIGN KEY (`account_id`) REFERENCES `account` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -203,7 +203,7 @@ CREATE TABLE `order` (
   KEY `location_id` (`location_id`),
   CONSTRAINT `order_ibfk_1` FOREIGN KEY (`account_id`) REFERENCES `account` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `order_ibfk_2` FOREIGN KEY (`location_id`) REFERENCES `location` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -233,7 +233,7 @@ CREATE TABLE `shipment` (
   KEY `location_id` (`location_id`),
   CONSTRAINT `shipment_ibfk_1` FOREIGN KEY (`box_id`) REFERENCES `box` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `shipment_ibfk_2` FOREIGN KEY (`location_id`) REFERENCES `location` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -257,7 +257,7 @@ CREATE TABLE `warehouse` (
   `name` varchar(32) NOT NULL,
   `address` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -287,4 +287,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-08-20 20:34:12
+-- Dump completed on 2014-08-20 20:40:45

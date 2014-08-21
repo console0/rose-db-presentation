@@ -139,45 +139,25 @@ sub Rose::DB::Object::ConventionManager::table_to_class
     return $table;
 }
 
-
-package Demo::DB::Object::ConventionManager;
-
-use base qw(Rose::DB::Object::ConventionManager);
-use Data::Dumper;
-
-sub new
+# Overriding this method to force schema into our DOs
+sub Rose::DB::Object::Metadata::Auto::perl_table_definition
 {
-    my ($class, %args) = @_;
-    my $self = $class->SUPER::new(%args);
-    $self->tables_are_singular(1);
-    return $self;
+      my($self, %args) = @_;
+
+      my $for_setup = $args{'for_setup'};
+      my $indent = defined $args{'indent'} ? $args{'indent'} : $self->default_perl_indent;
+
+      my $table = $self->table;
+      $table =~ s/'/\\'/;
+                                                                                                                                                                                                        
+      if($args{'for_setup'})
+      {
+        $indent = ' ' x $indent;
+        # Hacking schema in
+        return qq(${indent}schema => @{[ $embed_schema ? "'$schema'" : '__PACKAGE__->SCHEMA' ]},\n${indent}table  => '$table',);
+
+      }
+
+      return qq(__PACKAGE__->meta->table('$table'););
 }
-
-sub table_to_class
-{
-    my($self, $table, $prefix, $plural) = @_;
-
-    warn "$table";
-    $table = $self->SUPER::table_to_class($table, $prefix, $plural);
-    $table =~ s/Api/API/g;
-    $table =~ s/Statu$/Status/g;
-    return $table;
-}
-
-sub looks_like_map_table
-{
-    my($self, $table) = @_;
-
-    return $table =~ /^(\w+_){2,}map$|^\w+_has_\w+$/;
-}
-
-sub AUTOLOAD 
-{
-    warn Dumper(@_);
-    our $AUTOLOAD;
-    warn "Attempt to call $AUTOLOAD failed.\n";
-}
-
-1;
-
 

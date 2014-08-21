@@ -5,7 +5,8 @@ use strict;
 use base qw(Demo::DB::Object);
 
 __PACKAGE__->meta->setup(
-    table   => 'order',
+    schema => 'bluebox',
+    table  => 'order',
 
     columns => [
         id          => { type => 'serial', not_null => 1 },

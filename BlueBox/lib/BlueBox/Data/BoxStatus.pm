@@ -5,7 +5,8 @@ use strict;
 use base qw(Demo::DB::Object);
 
 __PACKAGE__->meta->setup(
-    table   => 'box_status',
+    schema => 'bluebox',
+    table  => 'box_status',
 
     columns => [
         id   => { type => 'serial', not_null => 1 },
@@ -17,7 +18,7 @@ __PACKAGE__->meta->setup(
     relationships => [
         box => {
             class      => 'BlueBox::Data::Box',
-            column_map => { id => 'status_id' },
+            column_map => { id => 'box_status_id' },
             type       => 'one to many',
         },
     ],

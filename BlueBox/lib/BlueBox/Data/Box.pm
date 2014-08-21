@@ -5,15 +5,16 @@ use strict;
 use base qw(Demo::DB::Object);
 
 __PACKAGE__->meta->setup(
-    table   => 'box',
+    schema => 'bluebox',
+    table  => 'box',
 
     columns => [
-        id           => { type => 'serial', not_null => 1 },
-        account_id   => { type => 'integer', not_null => 1 },
-        type_id      => { type => 'integer', not_null => 1 },
-        status_id    => { type => 'integer', not_null => 1 },
-        warehouse_id => { type => 'integer' },
-        name         => { type => 'varchar', length => 32, not_null => 1 },
+        id            => { type => 'serial', not_null => 1 },
+        account_id    => { type => 'integer', not_null => 1 },
+        box_type_id   => { type => 'integer', default => '0', not_null => 1 },
+        box_status_id => { type => 'integer', default => '0', not_null => 1 },
+        warehouse_id  => { type => 'integer' },
+        name          => { type => 'varchar', length => 32, not_null => 1 },
     ],
 
     primary_key_columns => [ 'id' ],
@@ -24,14 +25,14 @@ __PACKAGE__->meta->setup(
             key_columns => { account_id => 'id' },
         },
 
-        status => {
+        box_status => {
             class       => 'BlueBox::Data::BoxStatus',
-            key_columns => { status_id => 'id' },
+            key_columns => { box_status_id => 'id' },
         },
 
-        type => {
+        box_type => {
             class       => 'BlueBox::Data::BoxType',
-            key_columns => { type_id => 'id' },
+            key_columns => { box_type_id => 'id' },
         },
 
         warehouse => {

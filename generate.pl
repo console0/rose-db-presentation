@@ -65,6 +65,18 @@ $mod_dir =~ s/\:\:/\-/g;
 $mod_dir .= '/lib/';
 system ("mkdir -p $mod_dir") if (!-f $mod_dir);
 
+use Lingua::EN::Inflect;
+my $convention = Rose::DB::Object::ConventionManager->new;
+$convention->tables_are_singular(1);
+
+$convention->plural_to_singular_function( sub { my $val = shift;  warn "p-s $val"; return $val; } );
+$convention->singular_to_plural_function(\&Lingua::EN::Inflect::PL);
+warn Dumper($convention);
+use Data::Dumper;
+
+#$convention->
+
+$loader->convention_manager($convention);
 $loader->make_modules(
     module_dir         => $mod_dir,
     with_foreign_keys  => 1,
@@ -127,7 +139,7 @@ USAGE
     exit 1;
 }
 
-sub Rose::DB::Object::ConventionManager::table_to_class
+sub Rose::DB::Object::ConventionManager::table_to_classz
 {
     my($self, $table, $prefix, $plural) = @_;
 
@@ -154,7 +166,7 @@ sub Rose::DB::Object::Metadata::Auto::perl_table_definition
       {
         $indent = ' ' x $indent;
         # Hacking schema in
-        return qq(${indent}schema => @{[ $embed_schema ? "'$schema'" : '__PACKAGE__->SCHEMA' ]},\n${indent}table  => '$table',);
+        return qq(${indent}schema => @{[ $embed_schema ? "'$schema'" : '__PACKAGE__->SCHEMA' ]},\n${indent}table  => '$table',\n${indent}auto_load_related_classes => 0,\n);
 
       }
 
